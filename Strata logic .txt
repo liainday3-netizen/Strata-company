@@ -1,0 +1,23 @@
+// src/core/miner.ts (excerpt)
+class Miner {
+  private currentDifficulty = 1_000_000;
+  private blockHeight = 0;
+
+  async connect() {
+    const ws = new WebSocket('ws://localhost:3333');
+    ws.on('open', () => ws.send(JSON.stringify({ method: 'mining.subscribe' }));
+    ws.on('message', (data) => {
+      const job = JSON.parse(data);
+      if (job.method === 'mining.notify') {
+        this.currentDifficulty = job.params[2];
+        this.blockHeight = job.params[3];
+        this.submitShare();  // async, 1M hashes/s simulated
+      }
+    });
+  }
+
+  submitShare() {
+    const share = this.simulateHash(this.currentDifficulty);
+    // send to pool
+  }
+}

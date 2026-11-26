@@ -1,0 +1,14 @@
+export const growth = {
+  difficultyMultiplier: 1.0,
+  rewardMultiplier: 1.0,   // doubles every 7 days
+  playtimeSeconds: 0,
+
+  update(dt: number) {
+    this.playtimeSeconds += dt;
+    if (this.playtimeSeconds % (7 * 86400) === 0) {
+      this.rewardMultiplier *= 2;
+      console.log(`🚀 EXP GROWTH: multiplier now ${this.rewardMultiplier}x`);
+    }
+    this.difficultyMultiplier = 1 + (this.playtimeSeconds / 3600);
+  }
+};

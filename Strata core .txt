@@ -1,0 +1,14 @@
+// src/core/world.ts (excerpt)
+export class World {
+  private chunks: Map<string, Chunk> = new Map();
+  private scene: THREE.Scene;
+
+  generateChunk(x: number, y: number, z: number) {
+    const key = `\( {x}, \){y},${z}`;
+    if (this.chunks.has(key)) return;
+    const chunk = new Chunk(x, y, z);
+    this.chunks.set(key, chunk);
+    this.scene.add(chunk.mesh);
+    // Greedy meshing + noise (Simplex)
+  }
+}

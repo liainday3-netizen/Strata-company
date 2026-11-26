@@ -1,0 +1,14 @@
+src/
+├── core/
+│   ├── world.ts          # Voxel terrain gen + mesh
+│   ├── miner.ts          # Live pool session + hashrate
+│   ├── exponential.ts    # Growth math
+│   └── worker.ts         # Mining sim (runs in thread)
+├── ui/
+│   ├── hud.tsx           # Overlay + charts
+│   └── overlay.ts        # Bonus system
+├── assets/
+│   └── (brand assets from earlier)
+public/
+├── og.jpg
+└── favicon.svg
